@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row">
         <div class="col d-flex">
-           <input class="form-control" type="text" placeholder="Cerca un film">
+           <input v-model="bindingQuery" class="form-control" type="text" placeholder="Cerca un film">
            <button @keyup.enter="search">search</button>
         </div>
         <div class="col">
@@ -23,7 +23,12 @@
 
 <script>
 export default {
-  name: "HeaderComp"
+  name: "HeaderComp",
+  data() {
+    return {
+      bindingQuery: '',
+    }
+  },
 }
 </script>
 
