@@ -35,6 +35,7 @@ export default {
   methods:{
     sendEmit(){
       this.$emit('search', this.bindingQuery);
+      this.bindingQuery = "";
     }
   }
 }

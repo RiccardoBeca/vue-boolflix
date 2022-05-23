@@ -1,15 +1,16 @@
 <template>
   <div class="my-5">
-    <h1>{{card.title}}</h1>
-    <h2>{{card.original_title}}</h2>
+    <h1>{{card.name}}</h1>
+    <h2>{{card.original_name}}</h2>
     <h3>{{card.original_language}}</h3>
-    <h4>{{card.score_average}}</h4>
+    <h4>{{card.vote_average}}</h4>
+    <hr>
   </div>
 </template>
 
 <script>
 export default {
-  name: "CardComp",
+  name: "TvCardComp",
   props:{
     card:Object,
   }

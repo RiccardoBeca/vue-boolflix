@@ -1,8 +1,8 @@
 <template>
   <div>
     <HeaderComp @search="iniziaRicerca" />
-    <MainComp :itemArray="movieArray"/>
-    <MainComp :tvArray="tvArray"/>
+    <MainComp itemTitle="Films" :itemFilmArray="movieArray"/>
+    <MainComp itemTitle="Serie Tv" :itemTvArray="tvArray"/>
   </div>
   
 
@@ -72,8 +72,12 @@ methods: {
 
   iniziaRicerca(text){
     this.apiParams.query = text;
-    this.getMovieApi();
-    this.getTvApi();
+    if(text.length > 0) this.getMovieApi();
+    else this.movieArray = [];    
+    
+    if(text.length > 0)this.getTvApi();
+    else this.tvArray = [];    
+
   }
 
 },
