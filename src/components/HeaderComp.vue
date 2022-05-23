@@ -3,10 +3,12 @@
   <div class="d-flex justify-content-center">
     <div class="container">
       <div class="row">
+        <!-- searchbar -->
         <div class="col d-flex">
-           <input v-model="bindingQuery" class="form-control" type="text" placeholder="Cerca un film">
-           <button @keyup.enter="search">search</button>
+           <input v-model="bindingQuery"  @keyup.enter="sendEmit" class="form-control" type="text" placeholder="Cerca un film">
         </div>
+
+        <!-- select -->
         <div class="col">
             <select class="custom-select">
               <option value="">Scegli una categoria</option>
@@ -29,6 +31,12 @@ export default {
       bindingQuery: '',
     }
   },
+  
+  methods:{
+    sendEmit(){
+      this.$emit('search', this.bindingQuery);
+    }
+  }
 }
 </script>
 
