@@ -1,10 +1,8 @@
 <template>
-  <div class="my-5">
-    <img src="" alt="copertina">
-    <h1>{{card.name}}</h1>
+  <div class="p-5 my-5">
+    <img :src="`https://image.tmdb.org/t/p/w342${card.poster_path}`"  alt="copertina">
     <h2 v-if="card.original_name === card.name">{{card.name}}</h2>
     <h2 v-else>{{card.original_name}}</h2>
-    <h3>{{card.original_language}}</h3>
     <h3 v-if="card.original_language == 'en'">
       <span>Lingua originale: </span>
       <img class="flags" src="../assets/img/Flag_of_the_United_Kingdom.svg.png" alt="">
@@ -14,7 +12,12 @@
       <img class="flags" src="../assets/img/index.png" alt="">
     </h3>
     <h3 v-else>Language:{{card.original_language}}</h3>
-    <h4>{{card.vote_average}}</h4>
+    <span v-for="stellina in arrotondaVoto()" :key="stellina">
+      &starf;
+    </span>
+    <span v-for="stellinaVuota in 5 - arrotondaVoto()" :key="stellinaVuota">
+      &star;
+    </span>
     <hr>
 
     <!-- modifica e aggiungi flags -->
@@ -26,7 +29,12 @@ export default {
   name: "TvCardComp",
   props:{
     card:Object,
+  },
+  methods: {
+  arrotondaVoto(){
+    return Math.round(this.card.vote_average / 2);
   }
+  },
 }
 </script>
 
@@ -34,5 +42,10 @@ export default {
 @import '../assets/style/_vars.scss';
 @import '../assets/style/_general.scss';
 @import '../assets/style/_utils.scss';
+
+.flags{
+  width: 50px;
+}
+
 
 </style>

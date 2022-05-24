@@ -2,8 +2,8 @@
   <div>
     <HeaderComp @search="iniziaRicerca" />
     <div class="main-body">
-      <MainComp itemTitle="Films" :itemFilmArray="movieArray"/>
-      <MainComp itemTitle="Serie Tv" :itemTvArray="tvArray"/>
+      <MainComp itemTitle="Films:" :itemFilmArray="movieArray"/>
+      <MainComp itemTitle="Serie Tv:" :itemTvArray="tvArray"/>
     </div>
     
   </div>
