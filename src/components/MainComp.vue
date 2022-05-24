@@ -1,9 +1,8 @@
 <template>
   <div>
-    <h1 class="title m-5">{{itemTitle}}</h1>
+    <h1 class="title p-5">{{itemTitle}}</h1>
     <FilmCardComp :card="card" v-for="(card, index) in itemFilmArray" :key="`card${index}`"/>
     <TvCardComp :card="card" v-for="(card, index) in itemTvArray" :key="`card${index}`"/>
-
   </div>
   
 </template>
@@ -31,6 +30,7 @@ import TvCardComp from './TvCardComp.vue';
 @import '../assets/style/_vars.scss';
 @import '../assets/style/_general.scss';
 @import '../assets/style/_utils.scss';
+
 
 .title{
   color: red

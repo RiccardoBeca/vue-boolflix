@@ -1,8 +1,11 @@
 <template>
   <div>
     <HeaderComp @search="iniziaRicerca" />
-    <MainComp itemTitle="Films" :itemFilmArray="movieArray"/>
-    <MainComp itemTitle="Serie Tv" :itemTvArray="tvArray"/>
+    <div class="main-body">
+      <MainComp itemTitle="Films" :itemFilmArray="movieArray"/>
+      <MainComp itemTitle="Serie Tv" :itemTvArray="tvArray"/>
+    </div>
+    
   </div>
   
 
@@ -89,5 +92,12 @@ methods: {
 </script>
 
 <style lang="scss">
+@import './assets/style/_vars.scss';
+@import './assets/style/_general.scss';
+@import './assets/style/_utils.scss';
+
+.main-body{
+  background-color: rgb(16, 16, 16);
+}
 
 </style>

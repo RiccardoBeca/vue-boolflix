@@ -1,22 +1,16 @@
 <template>
 
-  <div class="d-flex justify-content-center">
-    <div class="container">
-      <div class="row">
-        <!-- searchbar -->
-        <div class="col d-flex">
-           <input v-model="bindingQuery"  @keyup.enter="sendEmit" class="form-control" type="text" placeholder="Cerca un film">
-        </div>
-
-        <!-- select -->
-        <div class="col">
-            <select class="custom-select">
-              <option value="">Scegli una categoria</option>
-              <option value="Film">Film</option>
-              <option value="Serie Tv">Serie Tv</option>
-            </select>
-        </div>
+  <div class="header">
+    <div class="container-fluid d-flex justify-content-between">
+      
+      <div class="text-danger d-flex align-items-center">
+        <img src="https://www.romait.it/wp-content/uploads/2022/04/Netflix-logo.jpg" alt="netflix logo">
       </div>
+      <!-- searchbar -->
+      <div class=" d-flex p-3">
+          <input v-model="bindingQuery"  @keyup.enter="sendEmit" class="form-control" type="text" placeholder="Cerca un film">
+      </div>
+      
     </div>
   </div>
 
@@ -45,4 +39,12 @@ export default {
 @import '../assets/style/_vars.scss';
 @import '../assets/style/_general.scss';
 @import '../assets/style/_utils.scss';
+
+.header {
+  background-color: black;
+  padding: 0;
+  img{
+    width: 150px;
+  }
+}
 </style>
