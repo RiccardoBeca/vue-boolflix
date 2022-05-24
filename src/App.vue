@@ -2,8 +2,9 @@
   <div>
     <HeaderComp @search="iniziaRicerca" />
     <div class="main-body">
-      <MainComp itemTitle="Films:" :itemFilmArray="movieArray"/>
-      <MainComp itemTitle="Serie Tv:" :itemTvArray="tvArray"/>
+      <MainComp v-if="movieArray.length > 0" itemTitle="Films:" :itemFilmArray="movieArray"/>
+      <MainComp v-if="tvArray.length > 0" itemTitle="Serie Tv:" :itemTvArray="tvArray"/>
+      <h3 class="cerca-film d-flex justify-content-center align-items-center" v-if="movieArray.length == 0 && tvArray.length == 0 ">CERCA UN FILM!</h3>
     </div>
     
   </div>
@@ -19,7 +20,7 @@ import HeaderComp from "./components/HeaderComp.vue";
 
 
 export default {
-  
+
   name: 'App',
   
   components: {
@@ -74,13 +75,12 @@ export default {
     },
 
     iniziaRicerca(text){
+      this.movieArray = []
+      this.tvArray = []
       this.apiParams.query = text;
       if(text.length > 0) this.getMovieApi();
-      else this.movieArray = [];    
       
       if(text.length > 0)this.getTvApi();
-      else this.tvArray = [];    
-
     }
   },
 }
@@ -93,9 +93,9 @@ export default {
 @import './assets/style/_general.scss';
 @import './assets/style/_utils.scss';
 
-.main-body{
- 
-  background-color: rgb(16, 16, 16);
+.cerca-film {
+  font-weight: bold;
+  color: rgb(232, 39, 32);
+  padding-top: 300px;
 }
-
 </style>
