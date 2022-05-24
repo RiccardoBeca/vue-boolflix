@@ -97,6 +97,7 @@ methods: {
 @import './assets/style/_utils.scss';
 
 .main-body{
+ 
   background-color: rgb(16, 16, 16);
 }
 

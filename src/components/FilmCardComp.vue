@@ -1,53 +1,36 @@
 <template>
-  <!-- <div class="p-5 my-5">
-    <img class="copertina" :src="`https://image.tmdb.org/t/p/w342${card.poster_path}`" alt="copertina">
-    <h1>{{card.title}}</h1>
-    <h2>{{card.original_title}}</h2>
-    <h3 v-if="card.original_language == 'en'">
-      <span>Lingua originale: </span>
-      <img class="flags" src="../assets/img/Flag_of_the_United_Kingdom.svg.png" alt="">
-    </h3>
-     <h3 v-else-if="card.original_language == 'it'">
-      <span>Lingua originale: </span>
-      <img class="flags" src="../assets/img/index.png" alt="">
-    </h3>
-    <h3 v-else>Language:{{card.original_language}}</h3>
-    <span v-for="stellina in arrotondaVoto()" :key="stellina">
-      &starf;
-    </span>
-    <span v-for="stellinaVuota in 5 - arrotondaVoto()" :key="stellinaVuota">
-      &star;
-    </span>
-  </div> -->
-
-<div class="flip-card">
-  <div class="flip-card-inner">
-    <div class="flip-card-front">
-      <img v-if="card.poster_path" :src="`https://image.tmdb.org/t/p/w342${card.poster_path}`" alt="copertina">
-      <img v-else src="../assets/img/1889142.jpg" alt="">
-    </div>
-    <div class="flip-card-back">
-      <h1>{{card.title}}</h1>
-      <h2>{{card.original_title}}</h2>
-      <h3 v-if="card.original_language == 'en'">
-        <span>Lingua originale: </span>
-        <img class="flags" src="../assets/img/Flag_of_the_United_Kingdom.svg.png" alt="">
-      </h3>
-      <h3 v-else-if="card.original_language == 'it'">
-        <span>Lingua originale: </span>
-        <img class="flags" src="../assets/img/index.png" alt="">
-      </h3>
-      <h3 v-else>Language:{{card.original_language}}</h3>
-      <span v-for="stellina in arrotondaVoto()" :key="stellina">
-      &starf;
-      </span>
-      <span v-for="stellinaVuota in 5 - arrotondaVoto()" :key="stellinaVuota">
-      &star;
-      </span>
-      <p>{{card.overview}}</p>
+<div class="p-2 my-2">
+  <div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <!-- ciclo le copertine dei film concatenando url di base con il path immagine dinamico tramite binding -->
+        <img v-if="card.poster_path" :src="`https://image.tmdb.org/t/p/w342${card.poster_path}`" alt="copertina">
+        <!-- se non trovo immagini stampo un'immagine di riserva -->
+        <img v-else src="../assets/img/1889142.jpg" alt="">
+      </div>
+      <div class="flip-card-back p-5">
+        <!-- con questo v-if/v-else evito di stampare titoo/titolo originale due volte nel caso essi fossero uguali -->
+        <h1 v-if="card.original_title === card.title">{{card.title}}</h1>
+        <h2 v-else>{{card.original_title}}</h2>
+        <h3 v-if="card.original_language == 'en'">
+          <span>Lingua originale: </span>
+          <img class="flags" src="../assets/img/Flag_of_the_United_Kingdom.svg.png" alt="">
+        </h3>
+        <h3 v-else-if="card.original_language == 'it'">
+          <span>Lingua originale: </span>
+          <img class="flags" src="../assets/img/index.png" alt="">
+        </h3>
+        <h3 v-else>Language:{{card.original_language}}</h3>
+        <!-- ciclo la stellina tante volte quanto il numero che ricevo dalla funzione  -->
+        <span v-for="stellina in arrotondaVoto()" :key="stellina"><i class="fa-solid fa-star"></i></span>
+        <!-- aggiungo una stellina vuota ciclandola tante volte quanto il numero di stelle massimo(5) sottraendo il numero di stelline piene -->
+        <span v-for="stellinaVuota in 5 - arrotondaVoto()" :key="stellinaVuota"><i class="fa-regular fa-star"></i></span>
+        <p>{{card.overview}}</p>
+      </div>
     </div>
   </div>
 </div>
+
 </template>
 
 <script>
@@ -57,6 +40,7 @@ export default {
     card:Object,
   },
   methods: {
+    // con questa funzione arrotondo il numero del voto e divido per due poiche' ho bisogno di una scala da 1 a 5
     arrotondaVoto(){
      return Math.round(this.card.vote_average / 2);
     }
@@ -112,7 +96,7 @@ export default {
 }
 
 .flip-card-back {
-  background-color: lightgrey;
+  background-color: #252525;
   color: white;
   transform: rotateY(180deg);
   overflow-y: auto;
