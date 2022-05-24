@@ -35,7 +35,9 @@
 
 <script>
 export default {
+
   name: "FilmCardComp",
+  
   props:{
     card:Object,
   },
